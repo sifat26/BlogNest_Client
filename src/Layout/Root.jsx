@@ -1,10 +1,10 @@
-import { Navbar } from "@material-tailwind/react";
 import { Outlet } from "react-router-dom";
+import { NavBar } from "../Pages/Shared/NavBar";
 
 const Root = () => {
     return (
         <div>
-            <Navbar/>
+            <NavBar/>
             <Outlet></Outlet>
             
         </div>

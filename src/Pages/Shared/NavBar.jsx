@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   Collapse,
@@ -8,10 +7,13 @@ import {
   Tooltip,
   Avatar,
 } from "@material-tailwind/react";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../Authentication/AuthProvider";
+import React, { useContext } from "react";
 
 
 export function NavBar() {
-
+    const { user, logOut } = useContext(AuthContext);
   const handleLogout = () => {
     logOut()
       .then(() => console.log("User Logged Out Succesfully"))
@@ -98,7 +100,7 @@ export function NavBar() {
           My Art & Craft
         </NavLink>
       </Typography>
-      <Typography
+      {/* <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -119,15 +121,6 @@ export function NavBar() {
             <circle cx="12" cy="12" r="5" />
             <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
           </svg>
-          <input
-            type="checkbox"
-            value="synthwave"
-            className="toggle theme-controller"
-            
-              onChange={handleToggle}
-              // show toggle image based on localstorage theme
-              checked={theme === "light" ? false : true}
-          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -142,12 +135,12 @@ export function NavBar() {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </label>
-      </Typography>
+      </Typography> */}
     </ul>
   );
 
   return (
-    <div className=" mx-auto ">
+    <div className="">
       <Navbar className="shadow-none h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <NavLink to="/">
@@ -155,7 +148,7 @@ export function NavBar() {
               as="a"
               className="mr-4 cursor-pointer py-1.5 font-bold lg:text-3xl text-xl  font-['Montserrat']"
             >
-              Woven Earth
+              BlogNest
             </Typography>
           </NavLink>
 
