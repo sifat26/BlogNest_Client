@@ -10,7 +10,7 @@ const Newsletter = () => {
     } 
   };
   return (
-    <div className="text-center">
+    <div className="text-center w-1/2 mx-auto">
         <div>
             <h2>
                 <span className="text-center text-5xl font-extrabold">Newsletter</span>

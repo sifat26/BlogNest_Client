@@ -1,6 +1,6 @@
 import Banner from "./Banner";
 import Newsletter from "./Newsletter";
-import RecentBlogs from "./RecentBlogs";
+import RecentBlogs from "./RecentBlogs/RecentBlogs";
 
 const Home = () => {
     return (
