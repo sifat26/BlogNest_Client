@@ -9,7 +9,7 @@ const RecentBlogs = () => {
       const data = await res.json();
       // const filteredData = data.filter((item, index) => index < 6);
       const filteredData = data.slice(-6).reverse();
-      console.log("data",filteredData);
+      // console.log("data",filteredData);
        setBlogs(filteredData);
       // setBlogs(data);
     })();
