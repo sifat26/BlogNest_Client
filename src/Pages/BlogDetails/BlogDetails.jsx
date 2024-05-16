@@ -27,14 +27,15 @@ const BlogDetails = () => {
     <div className="max-w-4xl mx-auto px-6 py-12">
       {/* Blog Title */}
       <header className="text-center mb-8">
-      <h2 className="flex flex-row flex-nowrap items-center mb-8">
+      <h1 className="text-5xl font-extrabold text-gray-800 mb-4">Blog Details</h1>
+      <h2 className="flex flex-row flex-nowrap items-center my-8">
         <span className="flex-grow block border-t border-black"></span>
         <span className="flex-none block mx-4 px-4 py-2.5 text-md rounded leading-none font-medium bg-black text-white">
         {category}
     </span>
         <span className="flex-grow block border-t border-black"></span>
     </h2>
-        <h1 className="text-5xl font-extrabold text-gray-800 mb-4">{title}</h1>
+        <h1 className="text-3xl font-extrabold text-gray-800 mb-4">{title}</h1>
         <p className="text-xl text-gray-500">{description}</p>
       </header>
 
