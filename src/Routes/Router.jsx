@@ -7,6 +7,7 @@ import ErrorPage from "../Pages/Error/ErrorPage";
 import AddBlog from "../Pages/AddBlog/AddBlog";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 import AllBlogs from "../Pages/AllBlogs/AllBlogs";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,9 @@ const router = createBrowserRouter([
             element:<Register/>
         },{
           path:'/addblog',
-          element:<AddBlog/>
+
+          element:
+          <PrivateRoute><AddBlog/></PrivateRoute>
         },{
           path:'/blogdetails/:id',
           element:<BlogDetails/>

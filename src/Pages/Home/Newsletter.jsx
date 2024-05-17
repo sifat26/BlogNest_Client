@@ -4,13 +4,13 @@ const Newsletter = () => {
   const handleSubscribe = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    console.log(email);
+    // console.log(email);
     if (email) {
       toast.success("Thank you for subscribing to our newsletter");
     } 
   };
   return (
-    <div className="text-center w-1/2 mx-auto">
+    <div className="text-center mx-4 lg:w-1/2 lg:mx-auto">
         <div>
             <h2>
                 <span className="text-center text-5xl font-extrabold">Newsletter</span>

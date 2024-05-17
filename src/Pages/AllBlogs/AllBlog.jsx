@@ -1,10 +1,23 @@
 /* eslint-disable react/prop-types */
+// import { Option, Select } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 const AllBlog = ({ blog }) => {
     const { _id, title, image, description, category } = blog;
   return (
     <div className="mx-4 shadow-lg rounded-lg">
+      {/* <div className="w-full">
+          <label
+            className="  block  text-blueGray-600 text-lg font-bold mb-2"
+          >
+            Filter By
+          </label>
+          <Select label="Select Filter Option">
+            <Option onClick={handleAllFilter}>All</Option>
+            <Option onClick={handletrueFilter}>Yes</Option>
+            <Option onClick={handlefalseFilter}>No</Option>
+          </Select>
+        </div> */}
 
       <img
         src={image}

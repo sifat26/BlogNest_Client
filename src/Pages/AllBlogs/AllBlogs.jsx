@@ -5,7 +5,7 @@ const AllBlogs = () => {
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {
       (async () => {
-        const res = await fetch("http://localhost:5000/blogs");
+        const res = await fetch("https://blognest-server.vercel.app/blogs");
         const data = await res.json();
        
          setBlogs(data);

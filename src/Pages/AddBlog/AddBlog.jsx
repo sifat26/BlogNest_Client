@@ -24,9 +24,9 @@ const AddBlog = () => {
       userEmail,
       long_description
     };
-    console.log(newBlog);
+    // console.log(newBlog);
     
-    fetch("http://localhost:5000/addblog", {
+    fetch("https://blognest-server.vercel.app/addblog", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +35,7 @@ const AddBlog = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

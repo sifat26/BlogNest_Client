@@ -12,7 +12,7 @@ const Banner = () => {
         </div>
 
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
-          <h1 className="text-5xl font-bold leading-tight mb-4">
+          <h1 className="lg:text-5xl text-3xl font-bold leading-tight mb-4">
             Welcome to Our Awesome BlogNest
           </h1>
           <p className="text-lg text-gray-300 mb-8">

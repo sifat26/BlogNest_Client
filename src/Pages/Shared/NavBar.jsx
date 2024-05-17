@@ -107,7 +107,7 @@ export function NavBar() {
         className="p-1 font-bold font-['Montserrat'] lg:text-lg text-base"
       >
         <NavLink
-          to="/wishlist"
+          to="/c"
           className={({ isActive }) =>
             isActive
               ? "px-3 py-2  border-b-4 border-b-[#E74C3C] text-[#E74C3C]"

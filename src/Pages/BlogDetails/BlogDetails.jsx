@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -7,9 +7,9 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState([]);
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://localhost:5000/blogdetails/${id}`);
+      const res = await fetch(`https://blognest-server.vercel.app/blogdetails/${id}`);
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setBlog(data);
     })();
   }, [id]);
@@ -22,7 +22,7 @@ const BlogDetails = () => {
     userEmail,
     long_description,
   } = blog;
-  console.log(blog);
+  // console.log(blog);
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       {/* Blog Title */}
