@@ -15,7 +15,7 @@ const WishList = () => {
       const data = await res.json();
       setLoading(false);
       setWishBlog(data);
-      console.log("Etai amar", data);
+    //   console.log("Etai amar", data);
     })();
   }, [user,contol]);
     return (
