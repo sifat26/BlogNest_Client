@@ -8,37 +8,52 @@ import AddBlog from "../Pages/AddBlog/AddBlog";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 import AllBlogs from "../Pages/AllBlogs/AllBlogs";
 import PrivateRoute from "./PrivateRoute";
-
+import WishList from "../Pages/WishList/WishList";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element:<Root></Root>,
-      errorElement:<ErrorPage></ErrorPage>,
-      children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },{
-            path:'/login',
-            element:<Login/>
-        },
-        {
-            path:"/register",
-            element:<Register/>
-        },{
-          path:'/addblog',
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/addblog",
 
-          element:
-          <PrivateRoute><AddBlog/></PrivateRoute>
-        },{
-          path:'/blogdetails/:id',
-          element:<BlogDetails/>
-        },{
-          path:'/allblogs',
-          element:<AllBlogs/>
-        }
-      ]
-    },
-  ]);
-  export default router;
+        element: (
+          <PrivateRoute>
+            <AddBlog />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/blogdetails/:id",
+        element: <BlogDetails />,
+      },
+      {
+        path: "/allblogs",
+        element: <AllBlogs />,
+      },
+      {
+        path: "/wishlist/:email",
+        element: (
+          <PrivateRoute>
+            <WishList />{" "}
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
+export default router;

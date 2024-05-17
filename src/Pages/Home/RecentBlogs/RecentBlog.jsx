@@ -1,35 +1,65 @@
 /* eslint-disable react/prop-types */
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../Authentication/AuthProvider";
 
 const RecentBlog = ({ blog }) => {
-  const { _id, title, image, description, category } = blog;
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  const wisherName=user.displayName;
+  const wisherEmail=user.email;
+  const handleWish = () => {
+    const wishedBlog = {
+      blogId,
+      title,
+      image,
+      category,
+      description,
+      wisherName,
+      wisherEmail,
+      long_description,
+    };
+    
+
+    fetch("http://localhost:5000/addwish", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishedBlog),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Blog Added Successfully!",
+            icon: "success",
+          });
+          
+        }
+      });
+  };
+  const {
+    _id,
+    title,
+    image,
+    description,
+    category,
+    userName,
+    userEmail,
+    long_description,
+  } = blog;
+  const blogId=_id;
   return (
     <div className="mx-4 shadow-lg rounded-lg">
-      {/* <div className="  shadow-lg rounded-lg">
-        <img className="w-full " src={image} alt="Beginner Blogger Tips" />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{title}</div>
-          <p className="text-gray-700 text-base">{description}</p>
-          <div className="mt-4">
-            <span className="text-gray-600 text-sm">Category: {category} </span>
-          </div>
-          <div className="flex justify-between mt-4">
-            <Link to={`/blogDetails/${_id}`}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
-                Details
-              </button>
-            </Link>
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-md">
-              Wishlist
-            </button>
-          </div>
-        </div>
 
-      </div> */}
       <img
         src={image}
         alt=""
-        className="mb-6 shadow-md rounded-lg bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
+        className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
       />
 
       <ul className="grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-6 items-start p-8 ">
@@ -66,7 +96,8 @@ const RecentBlog = ({ blog }) => {
               </Link>
 
               <Link
-                to=""
+                onClick={handleWish}
+                to={`/wishlist/${wisherEmail}`}
                 className="mt-8 items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 WishList
