@@ -6,7 +6,7 @@ import { AuthContext } from "../../../Authentication/AuthProvider";
 
 const RecentBlog = ({ blog }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  //  console.log(user);
   const wisherName=user.displayName;
   const wisherEmail=user.email;
   const handleWish = () => {
@@ -31,14 +31,19 @@ const RecentBlog = ({ blog }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        if (data.insertedId) {
+         console.log(data);
+        if (!data.success) {
+          Swal.fire({
+            title: "Oops!",
+            text: "Something went wrong!",
+            icon: "error",
+          });
+        }else{
           Swal.fire({
             title: "Success!",
-            text: "Blog Added Successfully!",
+            text: "WishList Added Successfully!",
             icon: "success",
-          });
-          
+          }); 
         }
       });
   };
@@ -97,7 +102,7 @@ const RecentBlog = ({ blog }) => {
 
               <Link
                 onClick={handleWish}
-                to={`/wishlist/${wisherEmail}`}
+                to={`/wishBlog/${wisherEmail}`}
                 className="mt-8 items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 WishList

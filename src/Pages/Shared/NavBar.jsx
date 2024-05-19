@@ -14,6 +14,7 @@ import React, { useContext } from "react";
 
 export function NavBar() {
     const { user, logOut } = useContext(AuthContext);
+      console.log("User email",user);
   const handleLogout = () => {
     logOut()
       .then(() => console.log("User Logged Out Succesfully"))
@@ -107,7 +108,7 @@ export function NavBar() {
         className="p-1 font-bold font-['Montserrat'] lg:text-lg text-base"
       >
         <NavLink
-          to="/wishlist"
+          to={`/wishBlog/${user.email}`}
           className={({ isActive }) =>
             isActive
               ? "px-3 py-2  border-b-4 border-b-[#E74C3C] text-[#E74C3C]"

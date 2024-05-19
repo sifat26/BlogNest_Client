@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 // import { Option, Select } from "@material-tailwind/react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Authentication/AuthProvider";
 
 const AllBlog = ({ blog }) => {
+ const { user } = useContext(AuthContext);
+  // console.log(user);
     const { _id, title, image, description, category } = blog;
   return (
     <div className="mx-4 shadow-lg rounded-lg">
@@ -59,7 +63,7 @@ const AllBlog = ({ blog }) => {
               </Link>
 
               <Link
-                to=""
+                to={`/wishBlog/${user.email}`}
                 className="mt-8 items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 WishList

@@ -46,10 +46,10 @@ const router = createBrowserRouter([
         element: <AllBlogs />,
       },
       {
-        path: "/wishlist/:email",
+        path: "/wishblog/:email",
         element: (
           <PrivateRoute>
-            <WishList />{" "}
+            <WishList />
           </PrivateRoute>
         ),
       },
