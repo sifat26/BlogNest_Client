@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-const SingleWishList = ({wishBlog}) => {
+const SingleWishList = ({wishBlog,handleDelete}) => {
     console.log("Fokinnir put",wishBlog);
     const {
         _id,
@@ -57,8 +57,8 @@ const SingleWishList = ({wishBlog}) => {
                 </Link>
   
                 <Link
-                //   onClick={handleWish}
-                  to={`/wishBlog/${wisherEmail}`}
+                   onClick={() => handleDelete(_id)}
+                  
                   className="mt-8 items-center justify-center rounded-xl bg-red-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-red-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
                 >
                   Remove

@@ -15,9 +15,10 @@ import React, { useContext } from "react";
 export function NavBar() {
     const { user, logOut } = useContext(AuthContext);
       console.log("User email",user);
+      //= const userMail=user.email;
   const handleLogout = () => {
     logOut()
-      .then(() => console.log("User Logged Out Succesfully"))
+      .then(() => console.log("User Logged Out Successfully"))
 
       .catch((error) => console.error(error));
   };
