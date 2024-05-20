@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../Authentication/AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Authentication/AuthProvider";
 import ShowComment from "./ShowComment";
 
 const BlogDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   console.log(user);
-  const commentOwnerName = user.displayName;
-  const commentOwnerEmail = user.email;
-  const commentOwnerPhotoUrl = user.photoURL;
+  const commentOwnerName = user?.displayName;
+  const commentOwnerEmail = user?.email;
+  const commentOwnerPhotoUrl = user?.photoURL;
   const commentBlogId = id.toString();
   console.log(commentOwnerPhotoUrl);
   console.log(commentOwnerEmail);
@@ -19,7 +19,7 @@ const BlogDetails = () => {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        `https://blognest-server.vercel.app/blogdetails/${id}`
+        `http://localhost:5000/blogdetails/${id}`
       );
       const data = await res.json();
       // console.log(data);
@@ -34,7 +34,7 @@ const BlogDetails = () => {
       console.log(data);
       setComments(data);
     })();
-  }, [id]);
+  }, [id,comments]);
   const {
     title,
     image,

@@ -5,7 +5,7 @@ const RecentBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     (async () => {
-      const res = await fetch("https://blognest-server.vercel.app/blogs");
+      const res = await fetch("http://localhost:5000/blogs");
       const data = await res.json();
       // const filteredData = data.filter((item, index) => index < 6);
       const filteredData = data.slice(-6).reverse();

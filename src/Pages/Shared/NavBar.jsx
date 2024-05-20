@@ -7,15 +7,17 @@ import {
   Tooltip,
   Avatar,
 } from "@material-tailwind/react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Authentication/AuthProvider";
-import React, { useContext } from "react";
+// import { AuthContext } from "../../Authentication/AuthProvider";
+// import React, { useContext } from "react";
 
 
 export function NavBar() {
     const { user, logOut } = useContext(AuthContext);
-      console.log("User email",user);
-      //= const userMail=user.email;
+      // console.log("User email",user);
+      
   const handleLogout = () => {
     logOut()
       .then(() => console.log("User Logged Out Successfully"))
@@ -109,7 +111,7 @@ export function NavBar() {
         className="p-1 font-bold font-['Montserrat'] lg:text-lg text-base"
       >
         <NavLink
-          to={`/wishBlog/${user.email}`}
+           to={`/wishBlog/${user?.email}`}
           className={({ isActive }) =>
             isActive
               ? "px-3 py-2  border-b-4 border-b-[#E74C3C] text-[#E74C3C]"

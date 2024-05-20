@@ -7,8 +7,8 @@ import { AuthContext } from "../../../Authentication/AuthProvider";
 const RecentBlog = ({ blog }) => {
   const { user } = useContext(AuthContext);
    console.log("Recent",user);
-  const wisherName=user.displayName;
-  const wisherEmail=user.email;
+   const wisherName=user?.displayName;
+   const wisherEmail=user?.email;
   const handleWish = () => {
     const wishedBlog = {
       blogId,

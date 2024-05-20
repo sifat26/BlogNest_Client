@@ -13,7 +13,7 @@ const AddBlog = () => {
     const image = form.image.value;
     const category = form.category.value;
     const description = form.description.value;
-    const long_description=form.long_description.value;
+    const long_description = form.long_description.value;
 
     const newBlog = {
       title,
@@ -22,11 +22,11 @@ const AddBlog = () => {
       description,
       userName,
       userEmail,
-      long_description
+      long_description,
     };
     // console.log(newBlog);
-    
-    fetch("https://blognest-server.vercel.app/addblog", {
+
+    fetch("http://localhost:5000/addblog", {
       method: "POST",
       headers: {
         "content-type": "application/json",

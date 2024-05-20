@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import { Typography, Input, Button } from "@material-tailwind/react";
  import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthProvider";
 import toast, {  } from "react-hot-toast";
+import { AuthContext } from "./AuthProvider";
 // import { Helmet } from "react-helmet-async";
 export function Login() {
   const { signInUser, signInWithGoogle,signInWithGithub ,setUser } = useContext(AuthContext);

@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 const SingleWishList = ({wishBlog,handleDelete}) => {
-    console.log("Fokinnir put",wishBlog);
+    // console.log("Fokinnir put",wishBlog);
     const {
         _id,
         blogId,

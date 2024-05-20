@@ -4,24 +4,59 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Authentication/AuthProvider";
 
+import Swal from "sweetalert2";
+
 const AllBlog = ({ blog }) => {
  const { user } = useContext(AuthContext);
-  // console.log(user);
+ 
+   console.log("Recent",user);
+   const wisherName=user?.displayName;
+   const wisherEmail=user?.email;
+    const handleWish = () => {
+      const wishedBlog = {
+        blogId,
+        title,
+        image,
+        category,
+        description,
+        wisherName,
+        wisherEmail,
+        
+      };
+      
+  
+      fetch("http://localhost:5000/addwish", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(wishedBlog),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+           console.log(data);
+          if (!data.success) {
+            Swal.fire({
+              title: "Oops!",
+              text: "Something went wrong!",
+              icon: "error",
+            });
+          }else{
+            Swal.fire({
+              title: "Success!",
+              text: "WishList Added Successfully!",
+              icon: "success",
+            }); 
+          }
+        });
+    };
     const { _id, title, image, description, category } = blog;
+    const blogId=_id;
+
   return (
     <div className="mx-4 shadow-lg rounded-lg">
-      {/* <div className="w-full">
-          <label
-            className="  block  text-blueGray-600 text-lg font-bold mb-2"
-          >
-            Filter By
-          </label>
-          <Select label="Select Filter Option">
-            <Option onClick={handleAllFilter}>All</Option>
-            <Option onClick={handletrueFilter}>Yes</Option>
-            <Option onClick={handlefalseFilter}>No</Option>
-          </Select>
-        </div> */}
+      
+     
 
       <img
         src={image}
@@ -63,7 +98,8 @@ const AllBlog = ({ blog }) => {
               </Link>
 
               <Link
-                to={`/wishBlog/${user.email}`}
+              onClick={handleWish}
+              to={`/wishBlog/${user?.email}`}
                 className="mt-8 items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 WishList
