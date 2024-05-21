@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import Newsletter from "./Newsletter";
 import RecentBlogs from "./RecentBlogs/RecentBlogs";
+import Statistics from "./Statistics";
 import TopBloger from "./TopBloger";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             <RecentBlogs/>
             <Newsletter/>
             <TopBloger/>
+            <Statistics/>
         </div>
     );
 };
