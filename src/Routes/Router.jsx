@@ -9,6 +9,7 @@ import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 import AllBlogs from "../Pages/AllBlogs/AllBlogs";
 import PrivateRoute from "./PrivateRoute";
 import WishList from "../Pages/WishList/WishList";
+import UpdateBlog from "../Pages/AllBlogs/UpdateBlog";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <WishList />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updateblog/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateBlog />
           </PrivateRoute>
         ),
       },

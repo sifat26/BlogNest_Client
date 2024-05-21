@@ -36,6 +36,7 @@ const BlogDetails = () => {
     })();
   }, [id,comments]);
   const {
+    _id,
     title,
     image,
     category,
@@ -99,13 +100,16 @@ const BlogDetails = () => {
           <span className="flex-grow block border-t border-black"></span>
         </h2>
         <div className="flex justify-end">
-          <Link
-                // onClick={handleWish}
-                // to={`/wishBlog/${wisherEmail}`}
+          {
+            userEmail===user?.email?(<Link
+                to={`/updateblog/${_id}`}
                 className=" items-center justify-center rounded-xl bg-cyan-600 py-1 px-2 font-dm text-sm font-medium text-white shadow-xl shadow-cyan-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 Update
-              </Link></div>
+              </Link>):("")
+          }
+          </div>
+          
         <h1 className="text-3xl font-extrabold text-gray-800 mb-4">{title}</h1>
         <p className="text-xl text-gray-500">{description}</p>
       </header>

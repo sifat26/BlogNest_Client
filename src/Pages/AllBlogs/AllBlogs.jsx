@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AllBlog from "./AllBlog";
 import { Option, Select } from "@material-tailwind/react";
+import axios from "axios";
 // import axios from "axios";
 
 const AllBlogs = () => {
@@ -20,8 +21,8 @@ const AllBlogs = () => {
    
     useEffect(() =>{
       (async()=>{
-        const result =await fetch(`http://localhost:5000/all_blogs?search=${search}`);
-            const data = await result.json();
+        const result =await axios.get(`http://localhost:5000/all_blogs?search=${search}`);
+            const data = await result.data;
             setBlogs(data);   
       })();
     },[search]);
