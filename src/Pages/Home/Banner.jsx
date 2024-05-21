@@ -2,12 +2,12 @@ import { motion } from "framer-motion"
 const Banner = () => {
   return (
     <div>
-      <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+      <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 lg:h-screen md:p-12 p-6 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://img.freepik.com/free-photo/toy-bricks-table_144627-48267.jpg?w=996&t=st=1715402125~exp=1715402725~hmac=6b06ea82e63bf98b677208aed8487e15471a44bf72fd448e199c44fbabad73a1"
             alt="Background Image"
-            className="object-cover object-center w-full h-full"
+            className="lg:object-center w-full h-full"
           />
           <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
