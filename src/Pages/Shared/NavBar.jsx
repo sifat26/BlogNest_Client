@@ -10,6 +10,8 @@ import {
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Authentication/AuthProvider";
+import { motion } from "framer-motion";
+
 // import { AuthContext } from "../../Authentication/AuthProvider";
 // import React, { useContext } from "react";
 
@@ -130,12 +132,18 @@ export function NavBar() {
       <Navbar className="shadow-none h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <NavLink to="/">
-            <Typography
-              as="a"
-              className="mr-4 cursor-pointer py-1.5 font-bold lg:text-3xl text-xl  font-['Montserrat']"
+          <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              BlogNest
-            </Typography>
+              <Typography
+                as="a"
+                className="mr-4 cursor-pointer py-1.5 font-bold lg:text-3xl text-xl  font-['Montserrat']"
+              >
+                BlogNest
+              </Typography>
+            </motion.div>
           </NavLink>
 
           <div className="flex items-center gap-4">

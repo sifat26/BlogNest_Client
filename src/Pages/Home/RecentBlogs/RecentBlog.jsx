@@ -3,12 +3,13 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Authentication/AuthProvider";
+import { motion } from "framer-motion";
 
 const RecentBlog = ({ blog }) => {
   const { user } = useContext(AuthContext);
   //  console.log("Recent",user);
-   const wisherName=user?.displayName;
-   const wisherEmail=user?.email;
+  const wisherName = user?.displayName;
+  const wisherEmail = user?.email;
   const handleWish = () => {
     const wishedBlog = {
       blogId,
@@ -20,7 +21,6 @@ const RecentBlog = ({ blog }) => {
       wisherEmail,
       long_description,
     };
-    
 
     fetch("http://localhost:5000/addwish", {
       method: "POST",
@@ -31,19 +31,19 @@ const RecentBlog = ({ blog }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-         console.log(data);
+        console.log(data);
         if (!data.success) {
           Swal.fire({
             title: "Oops!",
             text: "Something went wrong!",
             icon: "error",
           });
-        }else{
+        } else {
           Swal.fire({
             title: "Success!",
             text: "WishList Added Successfully!",
             icon: "success",
-          }); 
+          });
         }
       });
   };
@@ -57,10 +57,9 @@ const RecentBlog = ({ blog }) => {
     userEmail,
     long_description,
   } = blog;
-  const blogId=_id;
+  const blogId = _id;
   return (
     <div className="mx-4 shadow-lg rounded-lg">
-
       <img
         src={image}
         alt=""
@@ -71,10 +70,18 @@ const RecentBlog = ({ blog }) => {
         <li className="relative flex flex-col sm:flex-row xl:flex-col items-start">
           <div className="order-1 sm:ml-6 xl:ml-0">
             <h3 className="mb-1 text-slate-900 font-semibold">
-              <span className="mb-1 block text-sm leading-6 text-cyan-500">
-                {category}
-              </span>
-              {title}
+              <motion.h2
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="mb-1 block text-sm leading-6 text-cyan-500">
+                  {category}
+                </span>
+                {title}
+              </motion.h2>
+
+              
             </h3>
             <div className="prose prose-slate prose-sm text-slate-600">
               <p>{description}</p>
