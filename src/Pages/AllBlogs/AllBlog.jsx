@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const AllBlog = ({ blog }) => {
  const { user } = useContext(AuthContext);
  
-   console.log("Recent",user);
+  //  console.log("Recent",user);
    const wisherName=user?.displayName;
    const wisherEmail=user?.email;
     const handleWish = () => {

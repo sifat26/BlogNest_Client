@@ -11,6 +11,7 @@ const WishList = () => {
   const [isRun, setIsRun] = useState(true);
   const [control, setControl] = useState(false);
   const [wishBlog, setWishBlog] = useState([]);
+ 
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
   useEffect(() => {
     console.log("Running",isRun);
@@ -78,6 +79,7 @@ const WishList = () => {
       // setLoading(false);
     })();
   };
+
 
   return (
     <div className="my-12">
