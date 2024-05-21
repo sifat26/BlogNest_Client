@@ -26,7 +26,7 @@ const AddBlog = () => {
     };
     // console.log(newBlog);
 
-    fetch("http://localhost:5000/addblog", {
+    fetch("https://blognest-server.vercel.app/addblog", {
       method: "POST",
       headers: {
         "content-type": "application/json",

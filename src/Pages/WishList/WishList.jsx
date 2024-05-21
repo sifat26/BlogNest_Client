@@ -18,7 +18,7 @@ const WishList = () => {
     if (isRun) {
       (async () => {
         const res = await fetch(
-          `http://localhost:5000/wishBlog/${user?.email}`
+          `https://blognest-server.vercel.app/wishBlog/${user?.email}`
         );
         const data = await res.json();
         setLoading(false);
@@ -43,7 +43,7 @@ const WishList = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // console.log("My id",_id);
-        fetch(`http://localhost:5000/wishBlog/${_id}`, {
+        fetch(`https://blognest-server.vercel.app/wishBlog/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -69,7 +69,7 @@ const WishList = () => {
 
     (async () => {
       const res = await fetch(
-        `http://localhost:5000/filterwish/${category}/${user?.email}`
+        `https://blognest-server.vercel.app/filterwish/${category}/${user?.email}`
       );
       const data = await res.json();
 

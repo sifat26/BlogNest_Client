@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import AllBlog from "./AllBlog";
 import { Option, Select } from "@material-tailwind/react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import AllBlog from "./AllBlog";
 // import axios from "axios";
 
 const AllBlogs = () => {
@@ -10,7 +10,7 @@ const AllBlogs = () => {
     const [isSearch, setIsSearch] = useState(false);
     useEffect(() => {
       (async () => {
-        const res = await fetch("http://localhost:5000/blogs");
+        const res = await fetch("https://blognest-server.vercel.app/blogs");
         const data = await res.json();
        
          setBlogs(data);
@@ -21,7 +21,7 @@ const AllBlogs = () => {
    
     useEffect(() =>{
       (async()=>{
-        const result =await axios.get(`http://localhost:5000/all_blogs?search=${search}`);
+        const result =await axios.get(`https://blognest-server.vercel.app/all_blogs?search=${search}`);
             const data = await result.data;
             setBlogs(data);   
       })();
@@ -34,7 +34,7 @@ const AllBlogs = () => {
       console.log("fun",category);
       
       (async()=>{
-        const res = await fetch(`http://localhost:5000/filterblog/${category}`);
+        const res = await fetch(`https://blognest-server.vercel.app/filterblog/${category}`);
         const data = await res.json();
         
         setBlogs(data);

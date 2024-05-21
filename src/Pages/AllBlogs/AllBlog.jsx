@@ -25,7 +25,7 @@ const AllBlog = ({ blog }) => {
       };
       
   
-      fetch("http://localhost:5000/addwish", {
+      fetch("https://blognest-server.vercel.app/addwish", {
         method: "POST",
         headers: {
           "content-type": "application/json",

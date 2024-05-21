@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Authentication/AuthProvider";
-import { motion } from "framer-motion";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const RecentBlog = ({ blog }) => {
   const { user } = useContext(AuthContext);
@@ -22,7 +24,7 @@ const RecentBlog = ({ blog }) => {
       long_description,
     };
 
-    fetch("http://localhost:5000/addwish", {
+    fetch("https://blognest-server.vercel.app/addwish", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -60,11 +62,15 @@ const RecentBlog = ({ blog }) => {
   const blogId = _id;
   return (
     <div className="mx-4 shadow-lg rounded-lg">
-      <img
-        src={image}
-        alt=""
-        className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
-      />
+      <PhotoProvider>
+        <PhotoView src={image}>
+          <img
+            src={image}
+            alt=""
+            className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
+          />
+        </PhotoView>
+      </PhotoProvider>
 
       <ul className="grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-6 items-start p-8 ">
         <li className="relative flex flex-col sm:flex-row xl:flex-col items-start">
@@ -80,8 +86,6 @@ const RecentBlog = ({ blog }) => {
                 </span>
                 {title}
               </motion.h2>
-
-              
             </h3>
             <div className="prose prose-slate prose-sm text-slate-600">
               <p>{description}</p>

@@ -19,7 +19,7 @@ const BlogDetails = () => {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        `http://localhost:5000/blogdetails/${id}`
+        `https://blognest-server.vercel.app/blogdetails/${id}`
       );
       const data = await res.json();
       // console.log(data);
@@ -29,7 +29,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://localhost:5000/get/comment/${id}`);
+      const res = await fetch(`https://blognest-server.vercel.app/get/comment/${id}`);
       const data = await res.json();
       console.log(data);
       setComments(data);
@@ -63,7 +63,7 @@ const BlogDetails = () => {
         icon: "warning",
       });
     } else {
-      fetch("http://localhost:5000/addcomments/post", {
+      fetch("https://blognest-server.vercel.app/addcomments/post", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../Authentication/AuthProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Authentication/AuthProvider";
 
 const UpdateBlog = () => {
     const [blog, setBlog] = useState([]);
@@ -11,7 +11,7 @@ const UpdateBlog = () => {
     useEffect(() => {
         (async () => {
           const res = await fetch(
-            `http://localhost:5000/blogdetails/${id}`
+            `https://blognest-server.vercel.app/blogdetails/${id}`
           );
           const data = await res.json();
           // console.log(data);
@@ -44,7 +44,7 @@ const UpdateBlog = () => {
         };
         // console.log(newBlog);
     
-        fetch(`http://localhost:5000/updateBlog/${_id}`, {
+        fetch(`https://blognest-server.vercel.app/updateBlog/${_id}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
