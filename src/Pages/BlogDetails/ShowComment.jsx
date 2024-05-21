@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 const ShowComment = ({ comnt }) => {
-  console.log(comnt);
+  // console.log(comnt);
 
   return (
     <div>

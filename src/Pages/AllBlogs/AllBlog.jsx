@@ -1,18 +1,30 @@
 /* eslint-disable react/prop-types */
 // import { Option, Select } from "@material-tailwind/react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Authentication/AuthProvider";
 
 import Swal from "sweetalert2";
 
 const AllBlog = ({ blog }) => {
  const { user } = useContext(AuthContext);
+ const navigate = useNavigate();
  
   //  console.log("Recent",user);
    const wisherName=user?.displayName;
    const wisherEmail=user?.email;
     const handleWish = () => {
+      // if(!user){
+      //   Swal.fire({
+      //     title: "Oops!",
+      //     text: "Please Login First!",
+      //     icon: "error",
+      //   });
+      //   navigate("/login");
+      //   return 0;
+        
+      // }
+     
       const wishedBlog = {
         blogId,
         title,
@@ -24,7 +36,7 @@ const AllBlog = ({ blog }) => {
         
       };
       
-  
+    if(user !== null){
       fetch("https://blognest-server.vercel.app/addwish", {
         method: "POST",
         headers: {
@@ -49,6 +61,10 @@ const AllBlog = ({ blog }) => {
             }); 
           }
         });
+    }else{
+      navigate("/login");
+    }
+      
     };
     const { _id, title, image, description, category } = blog;
     const blogId=_id;

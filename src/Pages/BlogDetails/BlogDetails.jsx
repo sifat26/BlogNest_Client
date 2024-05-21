@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Authentication/AuthProvider";
 import ShowComment from "./ShowComment";
@@ -7,13 +7,14 @@ import ShowComment from "./ShowComment";
 const BlogDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
+  // console.log(user);
   const commentOwnerName = user?.displayName;
   const commentOwnerEmail = user?.email;
   const commentOwnerPhotoUrl = user?.photoURL;
   const commentBlogId = id.toString();
-  console.log(commentOwnerPhotoUrl);
-  console.log(commentOwnerEmail);
+  // console.log(commentOwnerPhotoUrl);
+  // console.log(commentOwnerEmail);
   const [blog, setBlog] = useState([]);
   const [comments, setComments] = useState([]);
   useEffect(() => {
@@ -46,6 +47,15 @@ const BlogDetails = () => {
     long_description,
   } = blog;
   const handleComment = (event) => {
+    if(!user){
+      Swal.fire({
+        title: "Warning!",
+        text: "Please Login First!",
+        icon: "warning",
+      });
+      navigate('/login');
+      return;
+    }
     event.preventDefault();
     const form = event.target;
     const comment = form.comment.value;
@@ -101,7 +111,7 @@ const BlogDetails = () => {
         </h2>
         <div className="flex justify-end">
           {
-            userEmail===user?.email?(<Link
+            user&&(userEmail===user?.email)?(<Link
                 to={`/updateblog/${_id}`}
                 className=" items-center justify-center rounded-xl bg-cyan-600 py-1 px-2 font-dm text-sm font-medium text-white shadow-xl shadow-cyan-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
@@ -150,6 +160,8 @@ const BlogDetails = () => {
               value="Submit comment"
               name="submit"
               className=" text-white px-4 py-3 bg-blue-500  rounded-lg"
+              // disabled={!user}
+             
             />
           </form>
         </div>
