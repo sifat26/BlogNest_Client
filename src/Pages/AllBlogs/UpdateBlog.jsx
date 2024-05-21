@@ -1,5 +1,70 @@
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../Authentication/AuthProvider";
+import Swal from "sweetalert2";
+
 const UpdateBlog = () => {
+    const [blog, setBlog] = useState([]);
+    const { id } = useParams();
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        (async () => {
+          const res = await fetch(
+            `http://localhost:5000/blogdetails/${id}`
+          );
+          const data = await res.json();
+          // console.log(data);
+          setBlog(data);
+        })();
+      }, [id]);
+      
+    //   Update
+    const handleUpdateBlog = (event) => {
+        event.preventDefault();
+        const _id = blog._id;
+         const userName = user.displayName;
+        const userEmail = user.email;
+        const form = event.target;
+        const title = form.title.value;
+        const image = form.image.value;
+        const category = form.category.value;
+        const description = form.description.value;
+        const long_description = form.long_description.value;
     
+        const newBlog = {
+            
+          title,
+          image,
+          category,
+          description,
+          userName,
+          userEmail,
+          long_description,
+        };
+        // console.log(newBlog);
+    
+        fetch(`http://localhost:5000/updateBlog/${_id}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newBlog),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            if (data.modifiedCount >0) {
+                navigate('/allblogs');
+              Swal.fire({
+                title: "Success!",
+                text: "Blog Added Successfully!",
+                icon: "success",
+              });
+            //   event.target.reset();
+            }
+          });
+      };
     return (
         <div>
              <section className=" dark:bg-gray-900 mx-4">
@@ -8,7 +73,7 @@ const UpdateBlog = () => {
             Update Your Blog
           </h2>
 
-          <form >
+          <form onSubmit={handleUpdateBlog}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
                 <label className="block mb-2 text-base font-medium  dark:text-white">
@@ -17,6 +82,7 @@ const UpdateBlog = () => {
                 <input
                   type="text"
                   name="image"
+                  defaultValue={blog.image}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type photo URL"
                   required
@@ -29,6 +95,7 @@ const UpdateBlog = () => {
                 <input
                   type="text"
                   name="title"
+                  defaultValue={blog.title}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type Blog"
                   required
@@ -40,6 +107,7 @@ const UpdateBlog = () => {
                 </label>
                 <select
                   name="category"
+                  defaultValue={blog.category}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   required
                 >
@@ -59,6 +127,7 @@ const UpdateBlog = () => {
                 rows="4"
                 type="text"
                 name="description"
+                defaultValue={blog.description}
                 className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Enter Short Description"
                 required
@@ -71,6 +140,7 @@ const UpdateBlog = () => {
               <textarea
                 type="text"
                 name="long_description"
+                defaultValue={blog.long_description}
                 className="h-60 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Enter Long Description"
                 required
