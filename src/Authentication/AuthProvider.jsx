@@ -44,6 +44,7 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth,githubProvider)
     }
     const logOut =async()=>{
+        setLoading(true);
         const {data}=await axios(`${import.meta.env.VITE_API_URL}/logout`,{withCredentials:true})
         console.log(data);
         return signOut(auth)
