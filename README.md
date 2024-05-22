@@ -12,8 +12,7 @@ BlogNest is a modern and dynamic blogging platform designed to provide a seamles
 
 - Personalized Wishlists: Users can add their favorite blog posts to a personalized wishlist for quick access and future reference. The wishlist page allows users to view and manage their saved blogs effortlessly.
 
-###  Interactive Comments: 
-Engage with the blogging community by commenting on posts. Users can leave insightful comments on blogs (except their own) and see other users' comments, complete with profile pictures for a more interactive experience.
+<ins> - Interactive Comments: </ins> Engage with the blogging community by commenting on posts. Users can leave insightful comments on blogs (except their own) and see other users' comments, complete with profile pictures for a more interactive experience.
 
 - Search and Filter Blogs: Discover new content using advanced search and filtering options. Users can search for blogs by title and filter them by category, making it easy to find specific posts or explore new topics.
 
