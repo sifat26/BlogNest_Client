@@ -45,10 +45,13 @@ const AuthProvider = ({children}) => {
     }
     const logOut =async()=>{
         setLoading(true);
-        const {data}=await axios(`${import.meta.env.VITE_API_URL}/logout`,{withCredentials:true})
+        console.log("Iam logged out");
+        const {data}=await axios.get(`${import.meta.env.VITE_API_URL}/logout`,{withCredentials:true})
         console.log(data);
         return signOut(auth)
         .then(()=>{
+            setUser(null);
+            console.log("deleted coocie");
             toast.success('Successfully Logged Out');
         })
     }

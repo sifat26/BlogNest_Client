@@ -67,7 +67,7 @@ const RecentBlog = ({ blog }) => {
           <img
             src={image}
             alt=""
-            className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
+            className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full h-64"
           />
         </PhotoView>
       </PhotoProvider>

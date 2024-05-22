@@ -72,7 +72,7 @@ const AllBlog = ({ blog }) => {
       <img
         src={image}
         alt=""
-        className="mb-6 shadow-md rounded-lg bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full"
+        className="mb-6 shadow-md rounded-lg rounded-b-none bg-slate-50 w-full  sm:mb-0 xl:mb-6 xl:w-full h-64"
       />
 
       <ul className="grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-6 items-start p-8 ">
