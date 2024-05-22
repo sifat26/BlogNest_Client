@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 // import { Helmet } from "react-helmet-async";
 
 export function Register() {
@@ -41,11 +42,16 @@ export function Register() {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
-        navigate(from);
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+          email:result?.user?.email,
+        },{
+          withCredentials:true,
+        })
         toast.success("Successfully Sign Up");
+        navigate(from);
         updatedUser(userName, photoURL)
           .then(() => {
-            setUser({...user,displayName:userName,photoURL: photoURL})
+            setUser({...result?.user,displayName:userName,photoURL: photoURL})
             console.log("Updated");
           })
           .catch((error) => console.error(error));

@@ -4,6 +4,7 @@ import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword,
 //  import auth from "../../Firebase/Firebase.config";
 import toast from "react-hot-toast";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 
 export const AuthContext=createContext(null);
@@ -42,7 +43,9 @@ const AuthProvider = ({children}) => {
         setLoading(true);
         return signInWithPopup(auth,githubProvider)
     }
-    const logOut =()=>{
+    const logOut =async()=>{
+        const {data}=await axios(`${import.meta.env.VITE_API_URL}/logout`,{withCredentials:true})
+        console.log(data);
         return signOut(auth)
         .then(()=>{
             toast.success('Successfully Logged Out');

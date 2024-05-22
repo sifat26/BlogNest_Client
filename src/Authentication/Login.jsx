@@ -5,6 +5,7 @@ import { Typography, Input, Button } from "@material-tailwind/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, {  } from "react-hot-toast";
 import { AuthContext } from "./AuthProvider";
+import axios from "axios";
 // import { Helmet } from "react-helmet-async";
 export function Login() {
   const { signInUser, signInWithGoogle,signInWithGithub ,setUser } = useContext(AuthContext);
@@ -14,6 +15,7 @@ export function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -22,7 +24,14 @@ export function Login() {
     console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        const loggedInUser=result.user;
+        console.log(loggedInUser);
+        // const user={email}
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+          email:result?.user?.email,
+        },{
+          withCredentials:true,
+        })
         e.target.reset();
         toast.success('Login Successfully!');
         setUser(result.user);
@@ -36,25 +45,42 @@ export function Login() {
       }
     );
   };
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
+  const handleGoogleSignIn = async() => {
+    try{
+      const result=await signInWithGoogle()
+      console.log(result.user);
+      const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+        email:result?.user?.email,
+      },{
+        withCredentials:true,
+      }
+    )
+      console.log(data);
+
+      // .then((result) => {
+      //   console.log(result.user);
         toast.success('Login Successfully!');
 
         navigate(from);
-      })
-      .catch((error) => {
+      }
+     
+    catch(error)  {
         console.error(error.message);
-      });
+        toast.error(error?.message);
+      };
   };
   const handleGithubSignIn = () => {
     signInWithGithub()
       .then((result) => {
         console.log(result.user);
-        toast.success('Login Successfully!');
-
+        axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{
+          email:result?.user?.email,
+        },{
+          withCredentials:true,
+        })
+        
         navigate(from);
+        toast.success('Login Successfully!');
       })
       .catch((error) => {
         console.error(error.message);

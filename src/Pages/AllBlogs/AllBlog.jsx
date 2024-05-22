@@ -7,36 +7,35 @@ import { AuthContext } from "../../Authentication/AuthProvider";
 import Swal from "sweetalert2";
 
 const AllBlog = ({ blog }) => {
- const { user } = useContext(AuthContext);
- const navigate = useNavigate();
- 
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   //  console.log("Recent",user);
-   const wisherName=user?.displayName;
-   const wisherEmail=user?.email;
-    const handleWish = () => {
-      // if(!user){
-      //   Swal.fire({
-      //     title: "Oops!",
-      //     text: "Please Login First!",
-      //     icon: "error",
-      //   });
-      //   navigate("/login");
-      //   return 0;
-        
-      // }
-     
-      const wishedBlog = {
-        blogId,
-        title,
-        image,
-        category,
-        description,
-        wisherName,
-        wisherEmail,
-        
-      };
-      
-    if(user !== null){
+  const wisherName = user?.displayName;
+  const wisherEmail = user?.email;
+  const handleWish = () => {
+    // if(!user){
+    //   Swal.fire({
+    //     title: "Oops!",
+    //     text: "Please Login First!",
+    //     icon: "error",
+    //   });
+    //   navigate("/login");
+    //   return 0;
+
+    // }
+
+    const wishedBlog = {
+      blogId,
+      title,
+      image,
+      category,
+      description,
+      wisherName,
+      wisherEmail,
+    };
+
+    if (user !== null) {
       fetch("https://blognest-server.vercel.app/addwish", {
         method: "POST",
         headers: {
@@ -46,34 +45,30 @@ const AllBlog = ({ blog }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-           console.log(data);
+          console.log(data);
           if (!data.success) {
             Swal.fire({
               title: "Oops!",
               text: "Something went wrong!",
               icon: "error",
             });
-          }else{
+          } else {
             Swal.fire({
               title: "Success!",
               text: "WishList Added Successfully!",
               icon: "success",
-            }); 
+            });
           }
         });
-    }else{
+    } else {
       navigate("/login");
     }
-      
-    };
-    const { _id, title, image, description, category } = blog;
-    const blogId=_id;
+  };
+  const { _id, title, image, description, category } = blog;
+  const blogId = _id;
 
   return (
     <div className="mx-4 shadow-lg rounded-lg">
-      
-     
-
       <img
         src={image}
         alt=""
@@ -114,8 +109,8 @@ const AllBlog = ({ blog }) => {
               </Link>
 
               <Link
-              onClick={handleWish}
-              to={`/wishBlog/${user?.email}`}
+                onClick={handleWish}
+                to={`/wishBlog/${user?.email}`}
                 className="mt-8 items-center justify-center rounded-xl bg-green-600 py-3 px-6 font-dm text-base font-medium text-white shadow-xl shadow-green-400/75 transition-transform duration-200 ease-in-out hover:scale-[1.02]"
               >
                 WishList

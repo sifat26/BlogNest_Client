@@ -17,6 +17,8 @@ const BlogDetails = () => {
   // console.log(commentOwnerEmail);
   const [blog, setBlog] = useState([]);
   const [comments, setComments] = useState([]);
+  const [control, setControl] = useState(false);
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
   useEffect(() => {
     (async () => {
       const res = await fetch(
@@ -29,13 +31,18 @@ const BlogDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    (async () => {
+    if(!control){
+      (async () => {
       const res = await fetch(`https://blognest-server.vercel.app/get/comment/${id}`);
       const data = await res.json();
       console.log(data);
       setComments(data);
+      await delay(200);
+      setControl(true);
     })();
-  }, [id,comments]);
+    }
+    
+  }, [id,comments,control]);
   const {
     _id,
     title,
@@ -47,6 +54,7 @@ const BlogDetails = () => {
     long_description,
   } = blog;
   const handleComment = (event) => {
+  setControl(false);
     if(!user){
       Swal.fire({
         title: "Warning!",
@@ -73,7 +81,8 @@ const BlogDetails = () => {
         icon: "warning",
       });
     } else {
-      fetch("https://blognest-server.vercel.app/addcomments/post", {
+      if(comment !== ""){
+        fetch("https://blognest-server.vercel.app/addcomments/post", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -92,6 +101,14 @@ const BlogDetails = () => {
             event.target.reset();
           }
         });
+      }else{
+        Swal.fire({
+          // title: "Oops!",
+          text: "Please write something!",
+          icon: "info",
+        });
+      }
+      
     }
   };
   // console.log(blog);
