@@ -8,16 +8,16 @@ BlogNest is a modern and dynamic blogging platform designed to provide a seamles
 
 ## Features
 
-- Create and Post Blogs: Users can easily create new blog posts with rich content, including images, categories, and detailed descriptions. The intuitive blog submission form ensures a smooth and efficient blogging experience.
+- <ins>Create and Post Blogs: </ins>Users can easily create new blog posts with rich content, including images, categories, and detailed descriptions. The intuitive blog submission form ensures a smooth and efficient blogging experience.
 
-- Personalized Wishlists: Users can add their favorite blog posts to a personalized wishlist for quick access and future reference. The wishlist page allows users to view and manage their saved blogs effortlessly.
+- <ins>Personalized Wishlists: </ins>Users can add their favorite blog posts to a personalized wishlist for quick access and future reference. The wishlist page allows users to view and manage their saved blogs effortlessly.
 
-<ins> - Interactive Comments: </ins> Engage with the blogging community by commenting on posts. Users can leave insightful comments on blogs (except their own) and see other users' comments, complete with profile pictures for a more interactive experience.
+- <ins>Interactive Comments: </ins> Engage with the blogging community by commenting on posts. Users can leave insightful comments on blogs (except their own) and see other users' comments, complete with profile pictures for a more interactive experience.
 
-- Search and Filter Blogs: Discover new content using advanced search and filtering options. Users can search for blogs by title and filter them by category, making it easy to find specific posts or explore new topics.
+- <ins>Search and Filter Blogs: </ins>Discover new content using advanced search and filtering options. Users can search for blogs by title and filter them by category, making it easy to find specific posts or explore new topics.
 
-- Top 10 Featured Blogs: Explore the most popular content on the platform through the Featured Blogs page, which showcases the top 10 posts based on content length. This feature highlights high-quality, in-depth blogs for users seeking comprehensive reads.
+- <ins>Top 10 Featured Blogs: </ins>Explore the most popular content on the platform through the Featured Blogs page, which showcases the top 10 posts based on content length. This feature highlights high-quality, in-depth blogs for users seeking comprehensive reads.
 
-- Responsive Design: Enjoy a seamless browsing experience across all devices. BlogNest's responsive design ensures that the website looks great and functions smoothly on desktops, tablets, and smartphones.
+- <ins>Responsive Design: </ins>Enjoy a seamless browsing experience across all devices. BlogNest's responsive design ensures that the website looks great and functions smoothly on desktops, tablets, and smartphones.
 
-- User Authentication: Securely register and log in using email and password, or conveniently sign in with Google. The authentication system includes robust password validation and user-friendly error messages for a smooth login experience.
+- <ins>User Authentication: </ins>Securely register and log in using email and password, or conveniently sign in with Google. The authentication system includes robust password validation and user-friendly error messages for a smooth login experience.
