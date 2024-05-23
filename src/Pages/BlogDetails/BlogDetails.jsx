@@ -35,7 +35,7 @@ const BlogDetails = () => {
       (async () => {
       const res = await fetch(`https://blognest-server.vercel.app/get/comment/${id}`);
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setComments(data);
       await delay(200);
       setControl(true);

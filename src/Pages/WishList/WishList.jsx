@@ -48,7 +48,7 @@ const WishList = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               setControl(!control);
               Swal.fire({
@@ -65,7 +65,7 @@ const WishList = () => {
   const handleAllFilter = (category) => {
     // setLoading(true);
     //const category = category;
-    console.log("funwish", category);
+    // console.log("funwish", category);
 
     (async () => {
       const res = await fetch(
@@ -74,8 +74,8 @@ const WishList = () => {
       const data = await res.json();
 
       setWishBlog(data);
-      console.log("Filter kora", data);
-      console.log("setwishblog", wishBlog);
+      // console.log("Filter kora", data);
+      // console.log("setwishblog", wishBlog);
       // setLoading(false);
     })();
   };

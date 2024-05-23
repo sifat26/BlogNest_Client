@@ -27,7 +27,7 @@ const FeaturedBlogs = () => {
           try {
             const response = await fetch('https://blognest-server.vercel.app/blogs/sort');
             const result = await response.json();
-       console.log(result);
+      //  console.log(result);
     
   
   const defaultData = [
@@ -38,7 +38,7 @@ const FeaturedBlogs = () => {
   let i=0;
   result.forEach(function(element){
     i++;
-    console.log("element",element);
+    // console.log("element",element);
     defaultData.push({
       SN: i,
       Title: element.title,
@@ -48,7 +48,7 @@ const FeaturedBlogs = () => {
     
   })
 
-  console.log("defaultdata",defaultData);
+  // console.log("defaultdata",defaultData);
             
             setData(defaultData) 
             // if (Array.isArray(result) && result.every(item => typeof item.long_description === 'string')){
