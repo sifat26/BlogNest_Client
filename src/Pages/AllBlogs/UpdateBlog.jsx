@@ -58,7 +58,7 @@ const UpdateBlog = () => {
                 navigate('/allblogs');
               Swal.fire({
                 title: "Success!",
-                text: "Blog Added Successfully!",
+                text: "Blog Updated Successfully!",
                 icon: "success",
               });
             //   event.target.reset();
@@ -150,7 +150,7 @@ const UpdateBlog = () => {
               type="submit"
               className=" w-full items-center px-5 py-2.5 mt-4 sm:mt-6 text-lg font-semibold text-center text-white  bg-[#E74C3C] rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
             >
-              Add Your Blog
+              Update Your Blog
             </button>
           </form>
         </div>

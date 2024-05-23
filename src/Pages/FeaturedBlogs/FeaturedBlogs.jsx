@@ -1,10 +1,10 @@
-import * as React from 'react'
 import {
-    createColumnHelper,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-  } from '@tanstack/react-table'
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import * as React from 'react';
 //  const Person = {
 //         firstName,
 //         lastName,
@@ -25,11 +25,11 @@ const FeaturedBlogs = () => {
       React.useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:5000/blogs/sort');
+            const response = await fetch('https://blognest-server.vercel.app/blogs/sort');
             const result = await response.json();
        console.log(result);
     
-  // console.log("Username",result[1].userName);
+  
   const defaultData = [
     
     
@@ -100,7 +100,8 @@ const FeaturedBlogs = () => {
     getCoreRowModel: getCoreRowModel(),
   })
     return (
-        <div className="p-2">
+        <div className="container lg:mx-auto md:mx-auto  lg:px-6  py-8">
+          <h2 className="text-5xl text-center font-extrabold my-12">Featured Blogs</h2>
       {/* <table>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -133,12 +134,12 @@ const FeaturedBlogs = () => {
   
       </table> */}
       
-<table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
-    <thead className="bg-gray-50">
+<table className="table-fixed w-full">
+    <thead className="bg-gray-300">
     {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map(header => (
-            <th key={header.id} scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th key={header.id} scope="col" className="px-6 py-3  lg:text-sm text-xs   tracking-wider w-1/4  text-left text-gray-600 font-bold uppercase">
                 {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -151,11 +152,11 @@ const FeaturedBlogs = () => {
         </tr>
          ))}
     </thead>
-    <tbody className="bg-white divide-y divide-gray-200">
+    <tbody className="bg-white divide-y text-sm divide-gray-200">
   {table.getRowModel().rows.map(row => (
     <tr key={row.id}>
       {row.getVisibleCells().map(cell => (
-        <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <td key={cell.id} className="py-4 px-6 border-b border-gray-200">
           {(() => {
             const cellValue = cell.getContext().getValue();
             if (typeof cellValue === 'string' && cellValue.startsWith('http')) {

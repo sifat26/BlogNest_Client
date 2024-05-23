@@ -74,7 +74,7 @@ const Newsletter = () => {
           </div>
         </form>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-          By subscribing, you agree with ConvertKit s{" "}
+          By subscribing, you agree with BlogNest s{" "}
           <a
             href="#"
             className="text-blue-600 hover:underline dark:text-blue-500"
