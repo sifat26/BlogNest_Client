@@ -82,7 +82,7 @@ const WishList = () => {
 
 
   return (
-    <div className="my-12">
+    <div className="my-12 lg:mx-32 md:mx-14 ">
       <h2 className="text-5xl text-center font-extrabold my-12">Wish List </h2>
       <div className="">
         <label className="  block  text-blueGray-600 text-lg font-bold mb-2">

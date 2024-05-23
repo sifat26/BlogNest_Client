@@ -37,10 +37,12 @@ const AuthProvider = ({children}) => {
     }
     const signInWithGoogle=()=>{
         setLoading(true);
+        setUser(null);
         return signInWithPopup(auth,googleProvider)
     }
     const signInWithGithub=()=>{
         setLoading(true);
+        setUser(null);
         return signInWithPopup(auth,githubProvider)
     }
     const logOut =async()=>{
@@ -59,6 +61,16 @@ const AuthProvider = ({children}) => {
         const unSubscribe=onAuthStateChanged(auth,currentUser=>{
             setUser(currentUser);
             setLoading(false);
+            if(currentUser){
+                const loggedUser={email:currentUser.email}
+                axios
+                .post('https://blognest-server.vercel.app/jwt',loggedUser,
+                   { withCredentials:true}
+                )
+                .then(res=>{
+                    console.log(res.data);
+                })
+            }
             console.log("observing",currentUser);
         });
         return ()=>{

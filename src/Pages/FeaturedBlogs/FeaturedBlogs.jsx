@@ -16,76 +16,48 @@ import {
 
       var SN,Title,OwnerName,Image;
       
-      const defaultData = [
-        {
-            SN: 'sn1',
-            Title: 'tilte1',
-            OwnerName: '22',
-            Image: 100,
-        },
-        {
-            SN: 'sn2`',
-            Title: 'tilte2',
-            OwnerName: "23",
-            Image: 101,
-        },
-        {
-            SN: 'sn3',
-            Title: 'tilte3',
-            OwnerName: '24',
-            Image: 102,
-        },
-        {
-            SN: 'sn4',
-            Title: 'tilte4',
-            OwnerName: '25',
-            Image: 102,
-        },
-
-      ]
-      const columnHelper = createColumnHelper();
-      const columns = [
-        columnHelper.accessor('SN', {
-          // cell: info => info.getValue(),
-          // footer: info => info.column.id,
-        }),
-        columnHelper.accessor("Title",
-        {
-
-        }
-        //   row => row.Title, {
-        //   id: 'Blog Title',
-        //   cell: info => <i>{info.getValue()}</i>,
-        //   header: () => <span>Blog Title</span>,
-        //   footer: info => info.column.id,
-        // }
-      ),
-        columnHelper.accessor('OwnerName', {
-          // header: () => 'Owner Name',
-          // cell: info => info.getValue(),
-          // footer: info => info.column.id,
-        }),
-        columnHelper.accessor('Image', {
-          //   cell : info => info.getValue(),
-          // header: () => <span>Image</span>,
-          // footer: info => info.column.id,
-        }),
-      ]
+      
+     
 const FeaturedBlogs = () => {
    
 
-      const [data, _setData] = React.useState(() => [...defaultData])
+      const [data, setData] = React.useState(() => [])
       React.useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://blognest-server.vercel.app/blogs');
+            const response = await fetch('http://localhost:5000/blogs/sort');
             const result = await response.json();
-       
-            // Step 3: Sort Data in Descending Order
-            const sortedData = result.sort((a, b) => b.long_description.localeCompare(a.long_description));
-            console.log(sortedData);
+       console.log(result);
+    
+  // console.log("Username",result[1].userName);
+  const defaultData = [
+    
+    
+  ]
+  
+  let i=0;
+  result.forEach(function(element){
+    i++;
+    console.log("element",element);
+    defaultData.push({
+      SN: i,
+      Title: element.title,
+      OwnerName: element.userName,
+     Image: element.userPhoto,
+    })
+    
+  })
+
+  console.log("defaultdata",defaultData);
+            
+            setData(defaultData) 
+            // if (Array.isArray(result) && result.every(item => typeof item.long_description === 'string')){
+            //   const sortedData = result.sort((a, b) => b.long_description.localeCompare(a.long_description));
+            // console.log(sortedData);
+            // }
+            
             // Step 4: Store and Display Data
-            setData(sortedData);
+            // setData(sortedData);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -94,7 +66,34 @@ const FeaturedBlogs = () => {
         fetchData();
       }, []);
   // const rerender = React.useReducer(() => ({}), {})[1]
+  const columnHelper = createColumnHelper();
+  const columns = [
+    columnHelper.accessor('SN', {
+      // cell: info => info.getValue(),
+      // footer: info => info.column.id,
+    }),
+    columnHelper.accessor("Title",
+    {
 
+    }
+    //   row => row.Title, {
+    //   id: 'Blog Title',
+    //   cell: info => <i>{info.getValue()}</i>,
+    //   header: () => <span>Blog Title</span>,
+    //   footer: info => info.column.id,
+    // }
+  ),
+    columnHelper.accessor('OwnerName', {
+      // header: () => 'Owner Name',
+      // cell: info => info.getValue(),
+      // footer: info => info.column.id,
+    }),
+    columnHelper.accessor('Image', {
+      //   cell : info => info.getValue(),
+      // header: () => <span>Image</span>,
+      // footer: info => info.column.id,
+    }),
+  ]
   const table = useReactTable({
     data,
     columns,
@@ -153,33 +152,26 @@ const FeaturedBlogs = () => {
          ))}
     </thead>
     <tbody className="bg-white divide-y divide-gray-200">
-    {table.getRowModel().rows.map(row => (
-        <tr key={row.id}>
-          
-            {/* <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
-                    <div className="flex-shrink-0 h-10 w-10">
-                        <img className="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt=""/>
-                    </div>
-                    <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">
-                            Jane Cooper
-                        </div>
-                        <div className="text-sm text-gray-500">
-                            jane.cooper@example.com
-                        </div>
-                    </div>
-                </div>
-            </td>
-             */}
-             {row.getVisibleCells().map(cell => (
-             <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-            </td>
-            ))}
-        </tr>
- ))}
-    </tbody>
+  {table.getRowModel().rows.map(row => (
+    <tr key={row.id}>
+      {row.getVisibleCells().map(cell => (
+        <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          {(() => {
+            const cellValue = cell.getContext().getValue();
+            if (typeof cellValue === 'string' && cellValue.startsWith('http')) {
+              // Check if cell value is a URL (assuming images are provided as URLs)
+              return <img src={cellValue} alt="Cell image" className="h-10 w-10 rounded-full" />;
+            } else {
+              // Render other types of data normally
+              return flexRender(cell.column.columnDef.cell, cell.getContext());
+            }
+          })()}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+
 </table>
 
     

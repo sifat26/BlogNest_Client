@@ -4,10 +4,12 @@ import { AuthContext } from "../../Authentication/AuthProvider";
 
 const AddBlog = () => {
   const { user } = useContext(AuthContext);
+  
   const handleAddBlog = (event) => {
     event.preventDefault();
     const userName = user.displayName;
     const userEmail = user.email;
+    const userPhoto=user.photoURL;
     const form = event.target;
     const title = form.title.value;
     const image = form.image.value;
@@ -22,6 +24,7 @@ const AddBlog = () => {
       description,
       userName,
       userEmail,
+      userPhoto,
       long_description,
     };
     // console.log(newBlog);
